@@ -1,0 +1,81 @@
+{
+    "album": {
+        "album_type": "compilation",
+        "artists": [
+            {
+                "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/1dfeR4HaWDbWqFHLkxsg1d"
+                },
+                "href": "https://api.spotify.com/v1/artists/1dfeR4HaWDbWqFHLkxsg1d",
+                "id": "1dfeR4HaWDbWqFHLkxsg1d",
+                "name": "Queen",
+                "type": "artist",
+                "uri": "spotify:artist:1dfeR4HaWDbWqFHLkxsg1d"
+            }
+        ],
+        "available_markets": [
+            "JP"
+        ],
+        "external_urls": {
+            "spotify": "https://open.spotify.com/album/0Dy1oFiDwiDBW4ixrmWgJu"
+        },
+        "href": "https://api.spotify.com/v1/albums/0Dy1oFiDwiDBW4ixrmWgJu",
+        "id": "0Dy1oFiDwiDBW4ixrmWgJu",
+        "images": [
+            {
+                "url": "https://i.scdn.co/image/ab67616d0000b2730c15ed47cc7d3baa77537b52",
+                "width": 640,
+                "height": 640
+            },
+            {
+                "url": "https://i.scdn.co/image/ab67616d00001e020c15ed47cc7d3baa77537b52",
+                "width": 300,
+                "height": 300
+            },
+            {
+                "url": "https://i.scdn.co/image/ab67616d000048510c15ed47cc7d3baa77537b52",
+                "width": 64,
+                "height": 64
+            }
+        ],
+        "name": "Queen Jewels",
+        "release_date": "2004-01-01",
+        "release_date_precision": "day",
+        "total_tracks": 16,
+        "type": "album",
+        "uri": "spotify:album:0Dy1oFiDwiDBW4ixrmWgJu"
+    },
+    "artists": [
+        {
+            "external_urls": {
+                "spotify": "https://open.spotify.com/artist/1dfeR4HaWDbWqFHLkxsg1d"
+            },
+            "href": "https://api.spotify.com/v1/artists/1dfeR4HaWDbWqFHLkxsg1d",
+            "id": "1dfeR4HaWDbWqFHLkxsg1d",
+            "name": "Queen",
+            "type": "artist",
+            "uri": "spotify:artist:1dfeR4HaWDbWqFHLkxsg1d"
+        }
+    ],
+    "available_markets": [
+        "JP"
+    ],
+    "disc_number": 1,
+    "duration_ms": 356520,
+    "explicit": False,
+    "external_ids": {
+        "isrc": "GBUM71029604"
+    },
+    "external_urls": {
+        "spotify": "https://open.spotify.com/track/7k1dWFLqTfxNj4U2CfDRuK"
+    },
+    "href": "https://api.spotify.com/v1/tracks/7k1dWFLqTfxNj4U2CfDRuK",
+    "id": "7k1dWFLqTfxNj4U2CfDRuK",
+    "is_local": False,
+    "name": "Bohemian Rhapsody - Remastered 2011",
+    "popularity": 19,
+    "preview_url": None,
+    "track_number": 16,
+    "type": "track",
+    "uri": "spotify:track:7k1dWFLqTfxNj4U2CfDRuK"
+}
