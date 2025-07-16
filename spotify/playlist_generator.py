@@ -89,31 +89,46 @@ def main():
     
     sorted_genres = sorted(list(user_genres))
     
-    # Let the user choose a genre
-    print("\nYour available genres:")
-    for i, genre in enumerate(sorted_genres):
-        print(f"{i+1}: {genre}")
+    # Let the user choose a genre with a search-and-confirm workflow
+    chosen_genres = []
+    while not chosen_genres:
+        search_term = input("\nEnter a genre to search for (e.g., 'rock', 'house'): ").lower()
+        if not search_term:
+            continue
+
+        matched_genres = [g for g in sorted_genres if search_term in g.lower()]
+
+        if not matched_genres:
+            print(f"No genres found matching '{search_term}'. Please try again.")
+            continue
+
+        print("\nFound the following matching genres:")
+        for i, genre in enumerate(matched_genres):
+            print(f"- {genre}")
+        
+        confirm = input("Create a playlist with these genres? (y/n): ").lower()
+        if confirm == 'y':
+            chosen_genres = matched_genres
     
-    choice = int(input("Choose a genre by number: ")) - 1
-    chosen_genre = sorted_genres[choice]
-    
-    # Filter songs by genre using the cache
+    # Filter songs by the chosen group of genres
     genre_tracks = []
     for track in all_tracks:
         if track and track.get('artists'):
             artist_id = track['artists'][0]['id']
-            if chosen_genre in artist_genres_cache.get(artist_id, []):
+            artist_genres = artist_genres_cache.get(artist_id, [])
+            if any(genre in chosen_genres for genre in artist_genres):
                 genre_tracks.append(track)
 
     if not genre_tracks:
-        print(f"No tracks found for genre '{chosen_genre}'.")
+        print(f"No tracks found for the selected genres.")
         return
 
     # Sort tracks by artist, then by popularity
     genre_tracks.sort(key=lambda t: (t['artists'][0]['name'], -t.get('popularity', 0)))
     
-    playlist_name = f"{chosen_genre.replace(' ', '_').capitalize()}_sb"
-    new_playlist = client.create_playlist(playlist_name, description=f"A curated playlist of {chosen_genre} songs.")
+    # Use the original search term for the playlist name
+    playlist_name = f"{search_term.replace(' ', '_').capitalize()}_sb"
+    new_playlist = client.create_playlist(playlist_name, description=f"A curated playlist of {search_term} genres.")
     print(f"\nCreated playlist: '{playlist_name}'")
     
     # Add tracks in chunks of 100
