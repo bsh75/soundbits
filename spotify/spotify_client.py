@@ -4,16 +4,20 @@ from dotenv import load_dotenv
 import os
 import time
 
+# Explicitly load .env from the script's directory to ensure it's always found.
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path=dotenv_path)
+
 class SpotifyAPI:
     def __init__(self, client_id, client_secret, redirect_uri, scope="playlist-modify-public user-library-read"):
         """
         Initializes the SpotifyAPI client with automatic retry logic.
         """
-        load_dotenv()
+        # The retry config now uses the correct 'status_forcelist' parameter.
         retry_config = {
             'retries': 5,
             'status_forcelist': [429, 500, 502, 503, 504],
-            'status_retry_forcelist': [429, 500, 502, 503, 504]
+            # 'status_retry_forcelist': [429, 500, 502, 503, 504]
         }
         
         self.sp_user = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
