@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import AgglomerativeClustering
 
+from pathlib import Path
 
 class Song:
     """
@@ -115,7 +116,7 @@ class Song:
         print(f"Aggregated Feature Vector: {self.feature_vector.round(2)}")
         print("---------------------------\n")
 
-    def plot_features(self):
+    def plot_features(self, show: bool = True, plot_path: Path = None):
         """
         Creates and displays a comprehensive plot of the song's main features.
         """
@@ -159,7 +160,11 @@ class Song:
 
         plt.xlabel('Time (s)')
         plt.tight_layout(rect=[0, 0.03, 1, 0.95]) # Adjust layout to make room for suptitle
-        plt.show()
+        
+        if plot_path: plt.savefig(plot_path / f"{Path(self.file_path).stem}.png")
+        if show: plt.show()
+        
+        plt.close()
 
 
 # --- Example Usage ---
@@ -168,6 +173,7 @@ if __name__ == '__main__':
     mix_path = "/home/brett/Desktop/pers/soundbits/soundcloud/downloads/mixes/Christopher Tubbs - Christopher Tubbs' Caravan 'Enfants De La Nuit' Mix.mp3"
     song_path = "/home/brett/Desktop/pers/soundbits/soundcloud/downloads/songs/Sneakyyy - Infinite.mp3"
     
+    plot_path = Path("/home/brett/Desktop/pers/soundbits/extractor/plots")
     try:
         # Create a song object, which automatically processes the file
         song_object = Song(song_path)
@@ -176,7 +182,7 @@ if __name__ == '__main__':
         song_object.summarize()
         
         # Visualize the features
-        song_object.plot_features()
+        song_object.plot_features(plot_path=plot_path)
         
     except Exception as e:
         print(f"An error occurred: {e}")
